@@ -1,0 +1,1996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Lumbini - Famous Temples</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #e3f2fd;
+            --secondary: #ff9800;
+            --accent: #4a6572;
+            --text: #212121;
+            --light: #f8f9fa;
+            --dark: #1a237e;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f8ff, #e0f7fa);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="none" width="100" height="100"/><path fill="%23e3f2fd" opacity="0.2" d="M20,20 Q40,5 50,30 T80,20" stroke="%23e3f2fd" stroke-width="0.5"/></svg>');
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            animation: fadeInDown 1s ease;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px var(--shadow);
+            background: linear-gradient(45deg, var(--dark), #0d47a1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #455a64;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            font-weight: 300;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 30px auto;
+            position: relative;
+        }
+
+        #templeSearch {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: 2px solid var(--primary);
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        #templeSearch:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: white;
+            border: 2px solid var(--primary);
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow);
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 152, 0, 0.3);
+            border-color: var(--secondary);
+        }
+
+        .nav-btn i {
+            font-size: 1.3rem;
+        }
+
+        .temple-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .temple-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.8s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .temple-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .temple-img {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .temple-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .temple-card:hover .temple-img img {
+            transform: scale(1.1);
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+        }
+
+        .temple-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .temple-location {
+            font-size: 1rem;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .temple-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .temple-desc {
+            color: #546e7a;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            flex-grow: 1;
+        }
+
+        .rating-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .rating-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+
+        .stars {
+            display: flex;
+            gap: 8px;
+        }
+
+        .star {
+            font-size: 1.8rem;
+            color: #e0e0e0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .star:hover,
+        .star.active {
+            color: var(--secondary);
+            transform: scale(1.2);
+        }
+
+        .rate-btn {
+            background: var(--primary);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+            color: var(--text);
+        }
+
+        .rate-btn:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 900px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            transform: scale(0.8);
+            transition: transform 0.4s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: 25px;
+            background: var(--primary);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text);
+            background: none;
+            border: none;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-modal:hover {
+            color: var(--secondary);
+            transform: rotate(90deg);
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .modal-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--text);
+            font-family: 'Playfair Display', serif;
+            max-width: 80%;
+        }
+
+        .modal-location {
+            font-size: 1.1rem;
+            color: #455a64;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background: #e3f2fd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0d47a1;
+            font-size: 1.2rem;
+            font-weight: bold;
+            overflow: hidden;
+        }
+
+        .modal-desc {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #37474f;
+            margin-bottom: 25px;
+        }
+
+        .modal-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: var(--light);
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature i {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .feature-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--accent);
+        }
+        
+        .feature-content p {
+            font-size: 0.95rem;
+            color: #546e7a;
+        }
+
+        .modal-footer {
+            padding: 20px;
+            background: var(--light);
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .map-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .map-btn:hover {
+            background: #e65100;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+        }
+        
+        /* Loading spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: var(--secondary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none;
+        }
+        
+        .spinner.active {
+            display: block;
+        }
+
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 50px;
+            font-size: 1.5rem;
+            color: #546e7a;
+        }
+        
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+        
+        .temple-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .temple-card:nth-child(1) { animation-delay: 0.1s; }
+        .temple-card:nth-child(2) { animation-delay: 0.2s; }
+        .temple-card:nth-child(3) { animation-delay: 0.3s; }
+        .temple-card:nth-child(4) { animation-delay: 0.4s; }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .temple-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .nav-btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+            }
+            
+            .modal-img {
+                height: 250px;
+            }
+            
+            .modal-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .modal-title {
+                font-size: 1.8rem;
+            }
+            
+            .modal-img {
+                height: 200px;
+            }
+            
+            .feature {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #e3f2fd;
+            --secondary: #ff9800;
+            --text: #212121;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --accent: #0d47a1;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f8ff, #e0f7fa);
+            color: var(--text);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="none" width="100" height="100"/><path fill="%23e3f2fd" opacity="0.2" d="M20,20 Q40,5 50,30 T80,20" stroke="%23e3f2fd" stroke-width="0.5"/></svg>');
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px var(--shadow);
+            background: linear-gradient(45deg, var(--accent), #1a237e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #455a64;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: var(--primary);
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 152, 0, 0.3);
+        }
+
+        /* Places Grid */
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .place-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: all 0.4s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .place-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .place-img {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .place-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .place-card:hover .place-img img {
+            transform: scale(1.1);
+        }
+
+        .place-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .place-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .place-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        .place-location {
+            font-size: 1rem;
+            color: #546e7a;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .place-desc {
+            color: #546e7a;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .place-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .feature {
+            background: var(--primary);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .place-info {
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .info-item i {
+            color: var(--secondary);
+        }
+
+        /* Interactive Map */
+        .map-section {
+            margin: 60px 0;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--accent);
+        }
+
+        .map-container {
+            height: 400px;
+            background: var(--primary);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><rect width="100" height="100" fill="%23e3f2fd"/><path d="M20,20 Q40,5 50,30 T80,20 L80,80 L20,80 Z" fill="%23bbdefb" stroke="%2390caf9" stroke-width="0.5"/><circle cx="30" cy="50" r="5" fill="%23ff9800"/><circle cx="50" cy="30" r="5" fill="%23ff9800"/><circle cx="70" cy="60" r="5" fill="%23ff9800"/></svg>');
+            background-size: cover;
+            opacity: 0.8;
+        }
+
+        .map-markers {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .map-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--secondary);
+            border: 3px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .map-marker:hover {
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+
+        .map-marker::after {
+            content: attr(data-place);
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            white-space: nowrap;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .map-marker:hover::after {
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            color: #546e7a;
+            font-size: 1.1rem;
+            border-top: 1px solid #e0e0e0;
+            background: rgba(255,255,255,0.7);
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .place-card {
+            animation: fadeIn 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .place-card:nth-child(1) { animation-delay: 0.1s; }
+        .place-card:nth-child(2) { animation-delay: 0.2s; }
+        .place-card:nth-child(3) { animation-delay: 0.3s; }
+        .place-card:nth-child(4) { animation-delay: 0.4s; }
+        .place-card:nth-child(5) { animation-delay: 0.5s; }
+        .place-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        /* Load More Button */
+        .load-more-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .load-more-btn {
+            background: linear-gradient(45deg, #0d47a1, #1a237e);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(13, 71, 161, 0.3);
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .load-more-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(13, 71, 161, 0.4);
+        }
+        
+        .load-more-btn::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(30deg);
+            transition: all 0.6s;
+        }
+        
+        .load-more-btn:hover::after {
+            left: 120%;
+        }
+        
+        .load-more-btn i {
+            transition: transform 0.3s ease;
+        }
+        
+        .load-more-btn:hover i {
+            transform: rotate(90deg);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container {
+                height: 300px;
+            }
+            
+            .place-name {
+                font-size: 1.6rem;
+            }
+            
+            .load-more-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .place-info {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .load-more-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        /* Hidden cards */
+        .hidden-cards {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Discover Lumbini</h1>
+            <p class="subtitle">Explore the sacred birthplace of Lord Buddha and discover the most beautiful and historically significant temples in this UNESCO World Heritage Site</p>
+            
+            <div class="search-container">
+                <input type="text" id="templeSearch" placeholder="Search for temples...">
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn active" data-filter="all">
+                    <i class="fas fa-star"></i>
+                    All Temples
+                </button>
+                <button class="nav-btn" data-filter="popular">
+                    <i class="fas fa-fire"></i>
+                    Most Popular
+                </button>
+                <button class="nav-btn" data-filter="historical">
+                    <i class="fas fa-landmark"></i>
+                    Historical Sites
+                </button>
+                <button class="nav-btn" data-filter="international">
+                    <i class="fas fa-globe-asia"></i>
+                    International
+                </button>
+            </div>
+            
+            <div class="filter-container">
+                <button class="filter-btn active" data-rating="all">All Ratings</button>
+                <button class="filter-btn" data-rating="4"><i class="fas fa-star"></i> 4+</button>
+                <button class="filter-btn" data-rating="3"><i class="fas fa-star"></i> 3+</button>
+            </div>
+        </header>
+        
+        <main>
+            <div class="temple-grid" id="templeGrid">
+                <!-- Temples will be dynamically generated here -->
+            </div>
+        </main>
+    
+    </div>
+    
+    <!-- Modal for Temple Details -->
+    <div class="modal" id="templeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close-modal">&times;</button>
+                <h2 class="modal-title" id="modalTempleName">Maya Devi Temple</h2>
+                <p class="modal-location"><i class="fas fa-map-marker-alt"></i> <span id="modalLocation">Central Lumbini</span></p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-img" id="modalImage">
+                    Loading image...
+                </div>
+                <p class="modal-desc" id="modalDescription">The Maya Devi Temple is the most sacred site in Lumbini, marking the exact spot where Queen Mayadevi gave birth to Siddhartha Gautama in 623 BCE. The temple complex houses the Marker Stone, which pinpoints the birthplace, and the Nativity Sculpture depicting the birth scene. The temple stands near the sacred pond where Maya Devi bathed before giving birth, and the Ashoka Pillar erected by Emperor Ashoka in 249 BCE to commemorate his pilgrimage to this site. The temple's archaeological remains have been designated a UNESCO World Heritage Site.</p>
+                
+                <div class="modal-features">
+                    <div class="feature">
+                        <i class="fas fa-clock"></i>
+                        <div class="feature-content">
+                            <h3>Opening Hours</h3>
+                            <p>6:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-ticket-alt"></i>
+                        <div class="feature-content">
+                            <h3>Entrance Fee</h3>
+                            <p>Free for Nepalese, $2 for SAARC, $5 for others</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-praying-hands"></i>
+                        <div class="feature-content">
+                            <h3>Best Time to Visit</h3>
+                            <p>October to March</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-walking"></i>
+                        <div class="feature-content">
+                            <h3>Tour Duration</h3>
+                            <p>1-2 hours</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rating-container">
+                    <p class="rating-title">Your Rating:</p>
+                    <div class="stars" id="modalStars">
+                        <i class="fas fa-star star" data-rating="1"></i>
+                        <i class="fas fa-star star" data-rating="2"></i>
+                        <i class="fas fa-star star" data-rating="3"></i>
+                        <i class="fas fa-star star" data-rating="4"></i>
+                        <i class="fas fa-star star" data-rating="5"></i>
+                    </div>
+                    <button class="rate-btn" id="modalRateBtn">Submit Rating</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="map-btn">
+                    <i class="fas fa-map-marked-alt"></i>
+                    View on Map
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Loading spinner -->
+    <div class="spinner" id="loadingSpinner"></div>
+
+     <div class="container">
+       
+        
+        <main>
+            <div class="places-grid">
+                <!-- Maya Devi Temple -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/mayadevi-temple.png"Maya Devi Temple">
+                        <div class="place-tag">Must Visit</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">Maya Devi Temple</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Central Sacred Garden, Lumbini</p>
+                        <p class="place-desc">The Maya Devi Temple is the most sacred site in Lumbini, marking the exact spot where Queen Mayadevi gave birth to Siddhartha Gautama in 623 BCE. The temple complex houses ancient ruins, the Marker Stone pinpointing the birthplace, and the Nativity Sculpture depicting the birth scene.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">UNESCO Site</span>
+                            <span class="feature">Archaeological Ruins</span>
+                            <span class="feature">Sacred Pond</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>6:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>1-2 hours visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                              <!-- Kudan Stupa -->
+<div class="place-card">
+    <div class="place-img">
+        <img src="lumbini_pic/Kudan_Stupa.png" alt="Kudan Stupa">
+        <div class="place-tag">Historical</div>
+    </div>
+    <div class="place-content">
+        <h2 class="place-name">Kudan Stupa</h2>
+        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Lumbini Area, Nepal</p>
+        <p class="place-desc">Kudan Stupa, also known as Nigrodharama, is believed to be the site where Buddha met his father King Suddhodana after attaining enlightenment. This ancient stupa is an important pilgrimage site and holds immense historical value linked to Buddha’s early teachings and visits to his homeland.</p>
+        
+        <div class="place-features">
+            <span class="feature">Ancient Ruins</span>
+            <span class="feature">Buddha’s Life Events</span>
+            <span class="feature">Quiet Atmosphere</span>
+        </div>
+        
+        <div class="place-info">
+            <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <span>8:00 AM - 6:00 PM</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-walking"></i>
+                <span>30-45 min visit</span>
+            </div>
+        </div>
+    </div>
+</div>
+                
+                <!-- World Peace Pagoda -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/World Peace Pagoda.png" alt="World Peace Pagoda">
+                        <div class="place-tag">Iconic</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">World Peace Pagoda</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Eastern Monastic Zone, Lumbini</p>
+                        <p class="place-desc">The World Peace Pagoda is a massive white stupa built by Japanese Buddhists as a symbol of peace. Completed in 2001, this 41-meter tall structure features four golden statues of Buddha facing the cardinal directions, each representing different stages of Buddha's life.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">Panoramic Views</span>
+                            <span class="feature">Meditation Spot</span>
+                            <span class="feature">Japanese Architecture</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Sunrise to Sunset</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>1 hour visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                          <div class="places-grid">
+    <div class="place-card">
+        <div class="place-img">
+            <img src="lumbini_pic/Korean_Temple.png" alt="Korean Temple">
+            <div class="place-tag">Spiritual</div>
+        </div>
+        <div class="place-content">
+            <h2 class="place-name">Korean Temple</h2>
+            <p class="place-location"><i class="fas fa-map-marker-alt"></i> Monastic Zone, Lumbini</p>
+            <p class="place-desc">The Korean Temple, also known as the Dae Sung Shakya Temple, is a serene Buddhist monastery built in traditional Korean architectural style. It offers a peaceful space for meditation and spiritual reflection amidst beautiful surroundings.</p>
+
+            <div class="place-features">
+                <span class="feature">Peaceful Environment</span>
+                <span class="feature">Korean Architecture</span>
+                <span class="feature">Meditation</span>
+                <span class="feature">Cultural Exchange</span>
+            </div>
+
+            <div class="place-info">
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <span>9:00 AM - 6:00 PM</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-walking"></i>
+                    <span>30 min - 1 hour visit</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                
+                <!-- Ashoka Pillar -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/Ashoka Pillar.png" alt="Ashoka Pillar">
+                        <div class="place-tag">Historical</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">Ashoka Pillar</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Near Maya Devi Temple</p>
+                        <p class="place-desc">Erected by Emperor Ashoka in 249 BCE during his pilgrimage to Lumbini, this sandstone pillar is one of the earliest inscribed monuments in Nepal. The Brahmi script inscription confirms Lumbini as the birthplace of Buddha and commemorates Ashoka's visit.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">Ancient Inscription</span>
+                            <span class="feature">Archaeological Treasure</span>
+                            <span class="feature">3rd Century BCE</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-history"></i>
+                                <span>249 BCE On</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>30 minutes visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lumbini Museum -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/Lumbini Museum.png" alt="Lumbini Museum">
+                        <div class="place-tag">Educational</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">Lumbini Museum</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Cultural Zone, Lumbini</p>
+                        <p class="place-desc">The Lumbini Museum showcases artifacts and exhibits related to the life of Buddha and the archaeological significance of Lumbini. It features ancient coins, manuscripts, religious artifacts, and detailed information about the excavation of this World Heritage Site.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">Historical Exhibits</span>
+                            <span class="feature">Artifacts</span>
+                            <span class="feature">Educational</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>10:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>1-2 hours visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Places (Initially Hidden) -->
+            <div class="places-grid hidden-cards" id="additionalPlaces">
+                <!-- Myanmar Golden Temple -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/Myanmar Golden Temple.png" alt="Myanmar Golden Temple">
+                        <div class="place-tag">Golden</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">Myanmar Golden Temple</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Western Monastic Zone, Lumbini</p>
+                        <p class="place-desc">The Myanmar Golden Temple is a stunning example of Burmese architecture with intricate gold detailing. Built entirely by craftsmen from Myanmar, this temple features traditional Burmese stupas and beautiful murals depicting scenes from Buddha's life.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">Golden Stupa</span>
+                            <span class="feature">Burmese Art</span>
+                            <span class="feature">Traditional Architecture</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>7:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>45 minutes visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- China Temple -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/China Temple.png" alt="China Temple">
+                        <div class="place-tag">Majestic</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">China Temple</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Eastern Monastic Zone, Lumbini</p>
+                        <p class="place-desc">The China Temple is an impressive complex built in traditional Chinese architectural style. Featuring ornate decorations, curved roofs, and beautiful gardens, this temple complex includes a meditation hall, library, and living quarters for monks.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">Chinese Architecture</span>
+                            <span class="feature">Beautiful Gardens</span>
+                            <span class="feature">Meditation Hall</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>8:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>1 hour visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dharma Swami Maharaja Buddha Vihar -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/Dharma Swami Maharaja Buddha Vihar.png" alt="Dharma Swami Maharaja Buddha Vihar">
+                        <div class="place-tag">Peaceful</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">Dharma Swami Maharaja Buddha Vihar</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Northern Monastic Zone, Lumbini</p>
+                        <p class="place-desc">This beautiful monastery features traditional Nepalese architecture with intricate wood carvings. Known for its peaceful atmosphere, it serves as both a place of worship and a meditation center for visitors seeking tranquility.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">Nepali Architecture</span>
+                            <span class="feature">Wood Carvings</span>
+                            <span class="feature">Meditation Center</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>6:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>45 minutes visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Royal Thai Monastery -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/royal-thai-monastry.png" alt="Royal Thai Monastery">
+                        <div class="place-tag">Architecture</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">Royal Thai Monastery</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Eastern Monastic Zone, Lumbini</p>
+                        <p class="place-desc">The Royal Thai Monastery is a stunning example of Thai Buddhist architecture with intricate carvings, golden decorations, and curved roofs. Built with white marble and decorated with gold, this monastery is one of the most visually striking structures in Lumbini.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">Golden Temple</span>
+                            <span class="feature">Thai Architecture</span>
+                            <span class="feature">Meditation Hall</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>8:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>1 hour visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lumbini Crane Sanctuary -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/crane.png" alt="Lumbini Crane Sanctuary">
+                        <div class="place-tag">Wildlife</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">Lumbini Crane Sanctuary</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Western Development Region, Lumbini</p>
+                        <p class="place-desc">The Lumbini Crane Sanctuary is a vital conservation area for the endangered Sarus Crane. Spanning over 256 hectares, this wetland sanctuary provides a safe habitat for over 100 bird species and is an important site for biodiversity conservation in the region.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">Bird Watching</span>
+                            <span class="feature">Wetland Ecosystem</span>
+                            <span class="feature">Nature Trails</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>7:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>2-3 hours visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vietnam Phat Quoc Tu Temple -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/Vietnam Phat Quoc Tu Temple.png" alt="Vietnam Phat Quoc Tu Temple">
+                        <div class="place-tag">Cultural</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">Vietnam Phat Quoc Tu Temple</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> International Monastic Zone, Lumbini</p>
+                        <p class="place-desc">This Vietnamese temple showcases traditional architectural elements from Vietnam with vibrant colors and intricate designs. The temple complex includes a beautiful garden with lotus ponds and offers a peaceful environment for meditation and reflection.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">Vietnamese Design</span>
+                            <span class="feature">Lotus Ponds</span>
+                            <span class="feature">Peaceful Garden</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>7:30 AM - 5:30 PM</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>1 hour visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Load More Button -->
+            <div class="load-more-container">
+                <button class="load-more-btn" id="loadMoreBtn">
+                    <i class="fas fa-plus-circle"></i>
+                    Show More Places
+                </button>
+            </div>
+            
+            <!-- Interactive Map Section -->
+            <div class="map-section">
+                <h2 class="section-title">Lumbini Sacred Garden Map</h2>
+                <div class="map-container">
+                    <div class="map-overlay"></div>
+                    <div class="map-markers">
+                        <div class="map-marker" style="top: 45%; left: 50%;" data-place="Maya Devi Temple"></div>
+                        <div class="map-marker" style="top: 30%; left: 65%;" data-place="World Peace Pagoda"></div>
+                        <div class="map-marker" style="top: 50%; left: 48%;" data-place="Ashoka Pillar"></div>
+                        <div class="map-marker" style="top: 60%; left: 40%;" data-place="Lumbini Museum"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <div class="footer-content">
+                <p>Discover the spiritual heart of Buddhism in Lumbini, Nepal - the birthplace of Lord Buddha</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">
+                        <i class="fas fa-info-circle"></i>
+                        About Lumbini
+                    </a>
+                    <a href="most-visited-place.html" class="footer-link">
+                        <i class="fas fa-map-signs"></i>
+                       Most Vsisted Places
+                    </a>
+                    <a href="#" class="footer-link">
+                        <i class="fas fa-hotel"></i>
+                        Accommodation
+                    </a>
+                    <a href="#" class="footer-link">
+                        <i class="fas fa-calendar-alt"></i>
+                        Events
+                    </a>
+                
+        </footer>
+    </div>
+    
+    <script>
+        // Temple data with 12 temples
+       const templeData = [
+            {
+                id: "maya-devi",
+                name: "Maya Devi Temple",
+                location: "Central Lumbini",
+                description: "The Maya Devi Temple is the most sacred site in Lumbini, marking the exact spot where Queen Mayadevi gave birth to Siddhartha Gautama in 623 BCE. The temple complex houses the Marker Stone, which pinpoints the birthplace, and the Nativity Sculpture depicting the birth scene. The temple stands near the sacred pond where Maya Devi bathed before giving birth, and the Ashoka Pillar erected by Emperor Ashoka in 249 BCE to commemorate his pilgrimage to this site. The temple's archaeological remains have been designated a UNESCO World Heritage Site.",
+                image: "lumbini_pic/mayadevi-temple.png",
+                tags: ["popular", "historical"]
+            },
+            {
+                id: "peace-pagoda",
+                name: "World Peace Pagoda",
+                location: "Eastern Lumbini",
+                description: "The World Peace Pagoda is a massive white stupa built by Japanese Buddhists as a symbol of peace. Completed in 2001, this 41-meter tall structure is one of the most prominent landmarks in Lumbini. The pagoda features four golden statues of Buddha facing the four directions, each representing different stages of Buddha's life. Visitors can walk around the pagoda clockwise as a meditative practice. The surrounding gardens and peaceful atmosphere make it an ideal place for reflection and meditation, with panoramic views of Lumbini's sacred garden.",
+                image: "lumbini_pic/World Peace Pagoda.png",
+                tags: ["popular", "international"]
+            },
+            {
+                id: "thai-monastery",
+                name: "Royal Thai Monastery",
+                location: "Western Lumbini",
+                description: "The Royal Thai Monastery is a masterpiece of Thai architecture featuring intricate golden decorations and traditional Thai design elements. Built with white marble, the monastery complex includes a main temple with a curved, multi-tiered roof, ornate gables, and golden Buddha statues. The surrounding gardens with lotus ponds and meditation areas create a serene environment. Inside, the main shrine houses a beautiful Buddha statue in the traditional Thai style. The monastery also serves as a meditation center where visitors can learn about Buddhist practices and participate in meditation sessions.",
+                image: "lumbini_pic/royalthai.png",
+                tags: ["popular", "international"]
+            },
+            {
+                id: "chinese-monastery",
+                name: "Chinese Monastery",
+                location: "Northern Lumbini",
+                description: "The Chinese Monastery is a beautiful complex built in traditional Chinese architectural style. Featuring curved roofs with intricate carvings, colorful decorations, and traditional Chinese motifs, the monastery complex includes several pavilions connected by covered walkways surrounding a central courtyard. The main hall houses a large golden statue of Buddha, while smaller shrines throughout the complex feature various Bodhisattvas. The monastery also has a bell tower, drum tower, and beautiful gardens with bonsai trees and lotus ponds. The architecture reflects the fusion of Chinese Buddhist traditions with Nepalese influences.",
+                image: "lumbini_pic/China Temple.png",
+                tags: ["international"]
+            },
+            {
+                id: "myanmar-temple",
+                name: "Myanmar Golden Temple",
+                location: "Southern Lumbini",
+                description: "The Myanmar Golden Temple is a stunning example of Burmese architecture, featuring a gilded pagoda that shimmers in the sunlight. Built by the Myanmar government, this temple complex includes a large prayer hall decorated with intricate wood carvings and gold leaf. The central stupa is surrounded by smaller stupas and statues depicting scenes from Buddha's life. The temple's interior walls are adorned with beautiful murals illustrating Jataka tales. The peaceful courtyard features a meditation garden with Bodhi trees and lotus ponds, creating a serene atmosphere for contemplation.",
+                image: "lumbini_pic/Myanma GoldenTemple.png",
+                 tags: ["popular", "international"]
+            },
+            {
+                id: "sri-lankan",
+                name: "Sri Lankan Monastery",
+                location: "Western Lumbini",
+                description: "The Sri Lankan Monastery (Sri Lanka Maha Viharaya) is a beautiful temple complex that reflects traditional Sri Lankan Buddhist architecture. The main shrine features a distinctive white stupa surrounded by smaller stupas and statues. The complex includes meditation halls, a library of Buddhist scriptures, and living quarters for monks. The temple's walls are adorned with colorful frescoes depicting important events in Buddha's life. The surrounding gardens are meticulously maintained with tropical plants and lotus ponds, creating a peaceful environment for meditation and reflection.",
+                image: "lumbini_pic/Sri-Lankan-Monastery.png",
+                 tags: ["international"]
+            },
+            {
+                id: "german-monastery",
+                name: "German Monastery",
+                location: "Eastern Lumbini",
+                description: "The German Monastery, officially known as the Lumbini International Research Institute, is a unique blend of traditional Buddhist architecture and modern German design. Founded for Buddhist studies and research, the complex features a striking main hall with clean lines and minimalist design. The temple serves as a center for academic study, meditation, and interfaith dialogue. The library houses an extensive collection of Buddhist texts in multiple languages. The surrounding meditation gardens are designed with geometric precision, featuring water elements and carefully placed stones that create a contemplative atmosphere.",
+                 image: "lumbini_pic/ChineseMonastery.png",
+                  tags: ["international"]
+            },
+            {
+                id: "cambodian",
+                name: "Cambodian Monastery",
+                location: "Northern Lumbini",
+                description: "The Cambodian Monastery (Preah Ang Chek Preah Ang Chorm) is a stunning replica of the famous Angkor Wat temple complex. Built in traditional Khmer architectural style, the temple features intricate carvings, towering spires, and bas-reliefs depicting scenes from Buddhist scriptures. The central shrine houses a large statue of Buddha in the distinctive Cambodian style. The temple complex includes meditation halls, a library, and beautifully landscaped gardens with reflecting pools. The detailed stone carvings on the walls and pillars showcase the exceptional craftsmanship of Cambodian artisans.",
+                image: "lumbini_pic/cambodian.png",
+                  tags: ["international"]
+            },
+            {
+                id: "vietnamese",
+                name: "Vietnamese Temple",
+                location: "Southern Lumbini",
+                description: "The Vietnamese Temple (Phat Quoc Tu Temple) features traditional Vietnamese Buddhist architecture with gracefully curved roofs and intricate wooden carvings. The temple complex includes multiple prayer halls, a bell tower, and beautifully landscaped gardens with bonsai trees and lotus ponds. The main shrine houses a large golden Buddha statue surrounded by statues of Bodhisattvas. The temple's design incorporates elements of feng shui, creating a harmonious environment for meditation and worship. The interior is decorated with lacquered wood panels and mother-of-pearl inlays depicting Buddhist symbols and stories.",
+               image: "lumbini_pic/Vietnam Phat Quoc Tu Temple.png",
+                tags: ["international"]
+            },
+            {
+                id: "nepalese",
+                name: "Nepalese Buddha Temple",
+                location: "Central Lumbini",
+                description: "The Nepalese Buddha Temple showcases traditional Newari architecture, reflecting Nepal's rich cultural heritage. Built with intricately carved wood and brick, the temple features a multi-tiered pagoda-style roof with gilded finials. The temple complex includes shrines dedicated to various manifestations of Buddha and important Bodhisattvas. The courtyard features a large prayer wheel and beautiful stone carvings. The interior walls are adorned with traditional Newari paintings depicting Buddhist themes. This temple serves as a center for Nepalese Buddhist traditions and hosts important religious festivals throughout the year.",
+                image: "lumbini_pic/nepaleseTemple.png",
+                tags: ["historical"]
+            },
+            {
+                id: "drigung",
+                name: "Great Drigung Lotus Stupa",
+                location: "Eastern Lumbini",
+                description: "The Great Drigung Kagyud Lotus Stupa is a magnificent Tibetan Buddhist stupa built by the Drigung Kagyu lineage. The stupa features a unique design with multiple tiers symbolizing the path to enlightenment. The structure is adorned with intricate paintings, golden spires, and prayer wheels. Inside, the temple houses a large statue of Buddha Shakyamuni surrounded by statues of important Tibetan Buddhist masters. The surrounding gardens feature 108 smaller stupas arranged in geometric patterns. This temple serves as an important center for Tibetan Buddhist practice and hosts annual meditation retreats.",
+                 image: "lumbini_pic/drigung.png",
+                  tags: ["international"]
+            },
+            {
+                id: "dharmaswami",
+                name: "Dharmaswami Mahavihar",
+                location: "Western Lumbini",
+                description: "Dharmaswami Mahavihar is a traditional Nepalese Buddhist monastery known for its active monastic community. The complex features a main prayer hall with beautiful wood carvings and traditional Newari architecture. The monastery serves as an important center for Buddhist education, with resident monks studying ancient scriptures and meditation techniques. The temple hosts daily prayer ceremonies that visitors can observe. The courtyard features ancient stone carvings and a sacred Bodhi tree. This living monastery provides insight into contemporary Buddhist practice in Nepal while preserving ancient traditions.",
+                image: "lumbini_pic/dharmaswami.png",
+                tags: ["historical"]
+            }
+        ];
+
+        // DOM Elements
+        const templeGrid = document.getElementById('templeGrid');
+        const templeModal = document.getElementById('templeModal');
+        const closeModal = document.querySelector('.close-modal');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const searchInput = document.getElementById('templeSearch');
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        
+        // Store ratings for each temple
+        const ratings = {};
+        templeData.forEach(temple => {
+            ratings[temple.id] = 0;
+        });
+        
+        // Current temple in modal
+        let currentTemple = null;
+        let currentFilter = "all";
+        let currentRatingFilter = "all";
+        let currentSearch = "";
+
+        // Initialize the page
+        function initPage() {
+            renderTemples();
+            setupEventListeners();
+        }
+
+        // Render temples based on filters
+        function renderTemples() {
+            templeGrid.innerHTML = '';
+            
+            const filteredTemples = templeData.filter(temple => {
+                // Check search filter
+                const matchesSearch = temple.name.toLowerCase().includes(currentSearch.toLowerCase()) || 
+                                     temple.location.toLowerCase().includes(currentSearch.toLowerCase());
+                
+                // Check category filter
+                const matchesCategory = currentFilter === "all" || temple.tags.includes(currentFilter);
+                
+                // Check rating filter
+                const matchesRating = currentRatingFilter === "all" || 
+                                     ratings[temple.id] >= parseInt(currentRatingFilter);
+                
+                return matchesSearch && matchesCategory && matchesRating;
+            });
+            
+            if (filteredTemples.length === 0) {
+                templeGrid.innerHTML = '<div class="no-results"><i class="fas fa-search"></i> No temples match your search criteria</div>';
+                return;
+            }
+            
+            filteredTemples.forEach((temple, index) => {
+                const card = document.createElement('div');
+                card.className = 'temple-card';
+                card.innerHTML = `
+                    <div class="temple-img">
+                        ${getTagBadges(temple.tags)}
+                        <img src="${temple.image}" alt="${temple.name}">
+                        <div class="overlay">
+                            <h2 class="temple-name">${temple.name}</h2>
+                            <p class="temple-location"><i class="fas fa-map-marker-alt"></i> ${temple.location}</p>
+                        </div>
+                    </div>
+                    <div class="temple-info">
+                        <p class="temple-desc">${truncateDescription(temple.description)}</p>
+                        <div class="rating-container">
+                            <p class="rating-title">Rate this temple:</p>
+                            <div class="stars" data-temple="${temple.id}">
+                                <i class="fas fa-star star" data-rating="1"></i>
+                                <i class="fas fa-star star" data-rating="2"></i>
+                                <i class="fas fa-star star" data-rating="3"></i>
+                                <i class="fas fa-star star" data-rating="4"></i>
+                                <i class="fas fa-star star" data-rating="5"></i>
+                            </div>
+                            <button class="rate-btn" data-temple="${temple.id}">Submit Rating</button>
+                        </div>
+                    </div>
+                `;
+                
+                templeGrid.appendChild(card);
+                
+                // Add click event to temple card
+                card.addEventListener('click', () => {
+                    openTempleModal(temple.id);
+                });
+                
+                // Setup star rating for this card
+                const starsContainer = card.querySelector('.stars');
+                setupStarRating(starsContainer, temple.id);
+                
+                // Set initial star rating if exists
+                if (ratings[temple.id] > 0) {
+                    const stars = starsContainer.querySelectorAll('.star');
+                    for (let i = 0; i < ratings[temple.id]; i++) {
+                        stars[i].classList.add('active');
+                    }
+                }
+                
+                // Add event listener to rating button
+                const rateBtn = card.querySelector('.rate-btn');
+                rateBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const templeId = rateBtn.getAttribute('data-temple');
+                    submitRating(templeId);
+                });
+            });
+        }
+
+        // Get tag badges for temple card
+        function getTagBadges(tags) {
+            if (tags.includes("popular")) {
+                return '<div class="temple-tag">Popular</div>';
+            }
+            if (tags.includes("historical")) {
+                return '<div class="temple-tag" style="background:#5d4037">Historical</div>';
+            }
+            return '';
+        }
+
+        // Truncate description for card view
+        function truncateDescription(desc) {
+            return desc.length > 150 ? desc.substring(0, 150) + '...' : desc;
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Close modal
+            closeModal.addEventListener('click', () => {
+                templeModal.classList.remove('active');
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === templeModal) {
+                    templeModal.classList.remove('active');
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && templeModal.classList.contains('active')) {
+                    templeModal.classList.remove('active');
+                }
+            });
+            
+            // Navigation button clicks
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.getAttribute('data-filter');
+                    renderTemples();
+                });
+            });
+            
+            // Rating filter button clicks
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    currentRatingFilter = this.getAttribute('data-rating');
+                    renderTemples();
+                });
+            });
+            
+            // Search input
+            searchInput.addEventListener('input', function() {
+                currentSearch = this.value;
+                renderTemples();
+            });
+            
+            // Modal rating submission
+            document.getElementById('modalRateBtn').addEventListener('click', function() {
+                if (currentTemple) {
+                    submitRating(currentTemple);
+                }
+            });
+            
+            // Map button
+            document.querySelector('.map-btn').addEventListener('click', function() {
+               alert(`Map view for ${document.getElementById('modalTempleName').textContent} would open here.`);
+
+            });
+        }
+
+        // Star rating functionality
+        function setupStarRating(starsContainer, templeId) {
+            const stars = starsContainer.querySelectorAll('.star');
+            
+            stars.forEach(star => {
+                star.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const rating = parseInt(this.getAttribute('data-rating'));
+                    
+                    // Reset all stars in this container
+                    stars.forEach(s => s.classList.remove('active'));
+                    
+                    // Activate selected stars
+                    for (let i = 0; i < rating; i++) {
+                        stars[i].classList.add('active');
+                    }
+                    
+                    // Store the rating
+                    ratings[templeId] = rating;
+                });
+            });
+        }
+
+        // Submit rating
+        function submitRating(templeId) {
+            const rating = ratings[templeId];
+            
+            if (rating === 0) {
+                alert('Please select a rating before submitting.');
+                return;
+            }
+            
+            const templeName = templeData.find(t => t.id === templeId).name;
+            alert(`Thank you for your ${rating} star rating for ${templeName}!`);
+
+        }
+
+        // Function to open temple modal
+        function openTempleModal(templeId) {
+            const temple = templeData.find(t => t.id === templeId);
+            currentTemple = temple.id;
+            
+            document.getElementById('modalTempleName').textContent = temple.name;
+            document.getElementById('modalLocation').textContent = temple.location;
+            document.getElementById('modalDescription').textContent = temple.description;
+            
+            // Set image
+            const modalImage = document.getElementById('modalImage');
+           modalImage.style.background = `url('${temple.image}') center / cover no-repeat`;
+
+            modalImage.style.color = "transparent";
+            
+            // Reset modal stars
+            const stars = document.querySelectorAll('#modalStars .star');
+            stars.forEach(star => star.classList.remove('active'));
+            
+            // Activate stored rating if exists
+            if (ratings[temple.id] > 0) {
+                for (let i = 0; i < ratings[temple.id]; i++) {
+                    stars[i].classList.add('active');
+                }
+            }
+            
+            // Setup star rating for modal
+            setupStarRating(document.getElementById('modalStars'), temple.id);
+            
+            templeModal.classList.add('active');
+        }
+
+        // Initialize the page
+        initPage();
+
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const additionalPlaces = document.getElementById('additionalPlaces');
+            
+            loadMoreBtn.addEventListener('click', function() {
+                // Show the additional places
+                additionalPlaces.classList.remove('hidden-cards');
+                
+                // Hide the load more button
+                loadMoreBtn.style.display = 'none';
+                
+                // Add animations to the newly shown cards
+                const hiddenCards = additionalPlaces.querySelectorAll('.place-card');
+                hiddenCards.forEach((card, index) => {
+                    card.style.animation = `fadeIn 0.6s ease ${index * 0.1 + 0.3}s forwards`;
+
+                });
+            });
+        });
+    </script>
+</body>
+</html>

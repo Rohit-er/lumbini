@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Places to Visit in Lumbini | Discover the Birthplace of Buddha</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #e3f2fd;
+            --secondary: #ff9800;
+            --text: #212121;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --accent: #0d47a1;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f8ff, #e0f7fa);
+            color: var(--text);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="none" width="100" height="100"/><path fill="%23e3f2fd" opacity="0.2" d="M20,20 Q40,5 50,30 T80,20" stroke="%23e3f2fd" stroke-width="0.5"/></svg>');
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px var(--shadow);
+            background: linear-gradient(45deg, var(--accent), #1a237e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #455a64;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: var(--primary);
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 152, 0, 0.3);
+        }
+
+        /* Places Grid */
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .place-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: all 0.4s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .place-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .place-img {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .place-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .place-card:hover .place-img img {
+            transform: scale(1.1);
+        }
+
+        .place-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .place-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .place-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        .place-location {
+            font-size: 1rem;
+            color: #546e7a;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .place-desc {
+            color: #546e7a;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .place-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .feature {
+            background: var(--primary);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .place-info {
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .info-item i {
+            color: var(--secondary);
+        }
+
+        /* Interactive Map */
+        .map-section {
+            margin: 60px 0;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--accent);
+        }
+
+        .map-container {
+            height: 400px;
+            background: var(--primary);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><rect width="100" height="100" fill="%23e3f2fd"/><path d="M20,20 Q40,5 50,30 T80,20 L80,80 L20,80 Z" fill="%23bbdefb" stroke="%2390caf9" stroke-width="0.5"/><circle cx="30" cy="50" r="5" fill="%23ff9800"/><circle cx="50" cy="30" r="5" fill="%23ff9800"/><circle cx="70" cy="60" r="5" fill="%23ff9800"/></svg>');
+            background-size: cover;
+            opacity: 0.8;
+        }
+
+        .map-markers {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .map-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--secondary);
+            border: 3px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .map-marker:hover {
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+
+        .map-marker::after {
+            content: attr(data-place);
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            white-space: nowrap;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .map-marker:hover::after {
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            color: #546e7a;
+            font-size: 1.1rem;
+            border-top: 1px solid #e0e0e0;
+            background: rgba(255,255,255,0.7);
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .place-card {
+            animation: fadeIn 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .place-card:nth-child(1) { animation-delay: 0.1s; }
+        .place-card:nth-child(2) { animation-delay: 0.2s; }
+        .place-card:nth-child(3) { animation-delay: 0.3s; }
+        .place-card:nth-child(4) { animation-delay: 0.4s; }
+        .place-card:nth-child(5) { animation-delay: 0.5s; }
+        .place-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        /* Load More Button */
+        .load-more-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .load-more-btn {
+            background: linear-gradient(45deg, #0d47a1, #1a237e);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(13, 71, 161, 0.3);
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .load-more-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(13, 71, 161, 0.4);
+        }
+        
+        .load-more-btn::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(30deg);
+            transition: all 0.6s;
+        }
+        
+        .load-more-btn:hover::after {
+            left: 120%;
+        }
+        
+        .load-more-btn i {
+            transition: transform 0.3s ease;
+        }
+        
+        .load-more-btn:hover i {
+            transform: rotate(90deg);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container {
+                height: 300px;
+            }
+            
+            .place-name {
+                font-size: 1.6rem;
+            }
+            
+            .load-more-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .place-info {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .load-more-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        /* Hidden cards */
+        .hidden-cards {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Places to Visit in Lumbini</h1>
+                <p class="subtitle">Explore the sacred birthplace of Lord Buddha and discover the most significant historical and cultural sites in this UNESCO World Heritage Site</p>
+                
+                <div class="navigation">
+                    <button class="nav-btn">
+                        <i class="fas fa-map-marked-alt"></i>
+                        Sacred Garden
+                    </button>
+                    <button class="nav-btn">
+                        <i class="fas fa-university"></i>
+                        Monasteries
+                    </button>
+                    <button class="nav-btn">
+                        <i class="fas fa-landmark"></i>
+                        Historical Sites
+                    </button>
+                    <button class="nav-btn">
+                        <i class="fas fa-tree"></i>
+                        Nature & Parks
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <main>
+            <div class="places-grid">
+                <!-- Maya Devi Temple -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/mayadevi-temple.png"Maya Devi Temple">
+                        <div class="place-tag">Must Visit</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">Maya Devi Temple</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Central Sacred Garden, Lumbini</p>
+                        <p class="place-desc">The Maya Devi Temple is the most sacred site in Lumbini, marking the exact spot where Queen Mayadevi gave birth to Siddhartha Gautama in 623 BCE. The temple complex houses ancient ruins, the Marker Stone pinpointing the birthplace, and the Nativity Sculpture depicting the birth scene.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">UNESCO Site</span>
+                            <span class="feature">Archaeological Ruins</span>
+                            <span class="feature">Sacred Pond</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>6:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>1-2 hours visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                              <!-- Kudan Stupa -->
+<div class="place-card">
+    <div class="place-img">
+        <img src="lumbini_pic/Kudan_Stupa.png" alt="Kudan Stupa">
+        <div class="place-tag">Historical</div>
+    </div>
+    <div class="place-content">
+        <h2 class="place-name">Kudan Stupa</h2>
+        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Lumbini Area, Nepal</p>
+        <p class="place-desc">Kudan Stupa, also known as Nigrodharama, is believed to be the site where Buddha met his father King Suddhodana after attaining enlightenment. This ancient stupa is an important pilgrimage site and holds immense historical value linked to Buddha’s early teachings and visits to his homeland.</p>
+        
+        <div class="place-features">
+            <span class="feature">Ancient Ruins</span>
+            <span class="feature">Buddha’s Life Events</span>
+            <span class="feature">Quiet Atmosphere</span>
+        </div>
+        
+        <div class="place-info">
+            <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <span>8:00 AM - 6:00 PM</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-walking"></i>
+                <span>30-45 min visit</span>
+            </div>
+        </div>
+    </div>
+</div>
+                
+                <!-- World Peace Pagoda -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/World Peace Pagoda.png" alt="World Peace Pagoda">
+                        <div class="place-tag">Iconic</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">World Peace Pagoda</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Eastern Monastic Zone, Lumbini</p>
+                        <p class="place-desc">The World Peace Pagoda is a massive white stupa built by Japanese Buddhists as a symbol of peace. Completed in 2001, this 41-meter tall structure features four golden statues of Buddha facing the cardinal directions, each representing different stages of Buddha's life.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">Panoramic Views</span>
+                            <span class="feature">Meditation Spot</span>
+                            <span class="feature">Japanese Architecture</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Sunrise to Sunset</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>1 hour visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                          <div class="places-grid">
+    <div class="place-card">
+        <div class="place-img">
+            <img src="lumbini_pic/Korean_Temple.png" alt="Korean Temple">
+            <div class="place-tag">Spiritual</div>
+        </div>
+        <div class="place-content">
+            <h2 class="place-name">Korean Temple</h2>
+            <p class="place-location"><i class="fas fa-map-marker-alt"></i> Monastic Zone, Lumbini</p>
+            <p class="place-desc">The Korean Temple, also known as the Dae Sung Shakya Temple, is a serene Buddhist monastery built in traditional Korean architectural style. It offers a peaceful space for meditation and spiritual reflection amidst beautiful surroundings.</p>
+
+            <div class="place-features">
+                <span class="feature">Peaceful Environment</span>
+                <span class="feature">Korean Architecture</span>
+                <span class="feature">Meditation</span>
+                <span class="feature">Cultural Exchange</span>
+            </div>
+
+            <div class="place-info">
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <span>9:00 AM - 6:00 PM</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-walking"></i>
+                    <span>30 min - 1 hour visit</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                
+                <!-- Ashoka Pillar -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/Ashoka Pillar.png" alt="Ashoka Pillar">
+                        <div class="place-tag">Historical</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">Ashoka Pillar</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Near Maya Devi Temple</p>
+                        <p class="place-desc">Erected by Emperor Ashoka in 249 BCE during his pilgrimage to Lumbini, this sandstone pillar is one of the earliest inscribed monuments in Nepal. The Brahmi script inscription confirms Lumbini as the birthplace of Buddha and commemorates Ashoka's visit.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">Ancient Inscription</span>
+                            <span class="feature">Archaeological Treasure</span>
+                            <span class="feature">3rd Century BCE</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-history"></i>
+                                <span>249 BCE On</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>30 minutes visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lumbini Museum -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/Lumbini Museum.png" alt="Lumbini Museum">
+                        <div class="place-tag">Educational</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">Lumbini Museum</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Cultural Zone, Lumbini</p>
+                        <p class="place-desc">The Lumbini Museum showcases artifacts and exhibits related to the life of Buddha and the archaeological significance of Lumbini. It features ancient coins, manuscripts, religious artifacts, and detailed information about the excavation of this World Heritage Site.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">Historical Exhibits</span>
+                            <span class="feature">Artifacts</span>
+                            <span class="feature">Educational</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>10:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>1-2 hours visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Places (Initially Hidden) -->
+            <div class="places-grid hidden-cards" id="additionalPlaces">
+                <!-- Myanmar Golden Temple -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/Myanmar Golden Temple.png" alt="Myanmar Golden Temple">
+                        <div class="place-tag">Golden</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">Myanmar Golden Temple</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Western Monastic Zone, Lumbini</p>
+                        <p class="place-desc">The Myanmar Golden Temple is a stunning example of Burmese architecture with intricate gold detailing. Built entirely by craftsmen from Myanmar, this temple features traditional Burmese stupas and beautiful murals depicting scenes from Buddha's life.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">Golden Stupa</span>
+                            <span class="feature">Burmese Art</span>
+                            <span class="feature">Traditional Architecture</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>7:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>45 minutes visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- China Temple -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/China Temple.png" alt="China Temple">
+                        <div class="place-tag">Majestic</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">China Temple</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Eastern Monastic Zone, Lumbini</p>
+                        <p class="place-desc">The China Temple is an impressive complex built in traditional Chinese architectural style. Featuring ornate decorations, curved roofs, and beautiful gardens, this temple complex includes a meditation hall, library, and living quarters for monks.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">Chinese Architecture</span>
+                            <span class="feature">Beautiful Gardens</span>
+                            <span class="feature">Meditation Hall</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>8:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>1 hour visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dharma Swami Maharaja Buddha Vihar -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/Dharma Swami Maharaja Buddha Vihar.png" alt="Dharma Swami Maharaja Buddha Vihar">
+                        <div class="place-tag">Peaceful</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">Dharma Swami Maharaja Buddha Vihar</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Northern Monastic Zone, Lumbini</p>
+                        <p class="place-desc">This beautiful monastery features traditional Nepalese architecture with intricate wood carvings. Known for its peaceful atmosphere, it serves as both a place of worship and a meditation center for visitors seeking tranquility.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">Nepali Architecture</span>
+                            <span class="feature">Wood Carvings</span>
+                            <span class="feature">Meditation Center</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>6:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>45 minutes visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Royal Thai Monastery -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/royal-thai-monastry.png" alt="Royal Thai Monastery">
+                        <div class="place-tag">Architecture</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">Royal Thai Monastery</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Eastern Monastic Zone, Lumbini</p>
+                        <p class="place-desc">The Royal Thai Monastery is a stunning example of Thai Buddhist architecture with intricate carvings, golden decorations, and curved roofs. Built with white marble and decorated with gold, this monastery is one of the most visually striking structures in Lumbini.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">Golden Temple</span>
+                            <span class="feature">Thai Architecture</span>
+                            <span class="feature">Meditation Hall</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>8:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>1 hour visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lumbini Crane Sanctuary -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/crane.png" alt="Lumbini Crane Sanctuary">
+                        <div class="place-tag">Wildlife</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">Lumbini Crane Sanctuary</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> Western Development Region, Lumbini</p>
+                        <p class="place-desc">The Lumbini Crane Sanctuary is a vital conservation area for the endangered Sarus Crane. Spanning over 256 hectares, this wetland sanctuary provides a safe habitat for over 100 bird species and is an important site for biodiversity conservation in the region.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">Bird Watching</span>
+                            <span class="feature">Wetland Ecosystem</span>
+                            <span class="feature">Nature Trails</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>7:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>2-3 hours visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vietnam Phat Quoc Tu Temple -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="lumbini_pic/Vietnam Phat Quoc Tu Temple.png" alt="Vietnam Phat Quoc Tu Temple">
+                        <div class="place-tag">Cultural</div>
+                    </div>
+                    <div class="place-content">
+                        <h2 class="place-name">Vietnam Phat Quoc Tu Temple</h2>
+                        <p class="place-location"><i class="fas fa-map-marker-alt"></i> International Monastic Zone, Lumbini</p>
+                        <p class="place-desc">This Vietnamese temple showcases traditional architectural elements from Vietnam with vibrant colors and intricate designs. The temple complex includes a beautiful garden with lotus ponds and offers a peaceful environment for meditation and reflection.</p>
+                        
+                        <div class="place-features">
+                            <span class="feature">Vietnamese Design</span>
+                            <span class="feature">Lotus Ponds</span>
+                            <span class="feature">Peaceful Garden</span>
+                        </div>
+                        
+                        <div class="place-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>7:30 AM - 5:30 PM</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-walking"></i>
+                                <span>1 hour visit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Load More Button -->
+            <div class="load-more-container">
+                <button class="load-more-btn" id="loadMoreBtn">
+                    <i class="fas fa-plus-circle"></i>
+                    Show More Places
+                </button>
+            </div>
+            
+            <!-- Interactive Map Section -->
+            <div class="map-section">
+                <h2 class="section-title">Lumbini Sacred Garden Map</h2>
+                <div class="map-container">
+                    <div class="map-overlay"></div>
+                    <div class="map-markers">
+                        <div class="map-marker" style="top: 45%; left: 50%;" data-place="Maya Devi Temple"></div>
+                        <div class="map-marker" style="top: 30%; left: 65%;" data-place="World Peace Pagoda"></div>
+                        <div class="map-marker" style="top: 50%; left: 48%;" data-place="Ashoka Pillar"></div>
+                        <div class="map-marker" style="top: 60%; left: 40%;" data-place="Lumbini Museum"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <div class="footer-content">
+                <p>Discover the spiritual heart of Buddhism in Lumbini, Nepal - the birthplace of Lord Buddha</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">
+                        <i class="fas fa-info-circle"></i>
+                        About Lumbini
+                    </a>
+                    <a href="most-visited-place.html" class="footer-link">
+                        <i class="fas fa-map-signs"></i>
+                       Most Vsisted Places
+                    </a>
+                    <a href="#" class="footer-link">
+                        <i class="fas fa-hotel"></i>
+                        Accommodation
+                    </a>
+                    <a href="#" class="footer-link">
+                        <i class="fas fa-calendar-alt"></i>
+                        Events
+                    </a>
+                </div>
+                <p>© 2025 Discover Lumbini. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const additionalPlaces = document.getElementById('additionalPlaces');
+            
+            loadMoreBtn.addEventListener('click', function() {
+                // Show the additional places
+                additionalPlaces.classList.remove('hidden-cards');
+                
+                // Hide the load more button
+                loadMoreBtn.style.display = 'none';
+                
+                // Add animations to the newly shown cards
+                const hiddenCards = additionalPlaces.querySelectorAll('.place-card');
+                hiddenCards.forEach((card, index) => {
+                    card.style.animation = `fadeIn 0.6s ease ${index * 0.1 + 0.3}s forwards`;
+
+                });
+            });
+        });
+    </script>
+</body>
+</html>

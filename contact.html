@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Lumbini - Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --light-blue: #e6f2ff;
+            --primary-blue: #4dabf5;
+            --dark-blue: #1e7bc0;
+            --text-color: #333;
+            --black: #222;
+            --orange: #ff7b00;
+            --light-orange: #ff9e40;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --gray: #888;
+            --box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            --border-radius: 10px;
+            --transition: all 0.3s ease;
+            --green: #25D366;
+            --purple: #8e44ad;
+            --gold: #FFD700;
+            --saffron: #FF9933;
+            --dark-saffron: #E07C24;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--black);
+            background-color: var(--light-blue);
+            overflow-x: hidden;
+            line-height: 1.6;
+            position: relative;
+           
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--dark-blue);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--orange);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--saffron);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        /* Particles Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 100px;
+            padding-bottom: 80px;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .logo i {
+            font-size: 3rem;
+            color: var(--dark-saffron);
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            color: var(--dark-blue);
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h2 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--dark-blue);
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+            color: var(--black);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--saffron);
+            margin-bottom: 5px;
+        }
+
+        .label {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .hero-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .floating-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: var(--box-shadow);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #ffffff, #ffffff);
+            min-height: 300px;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--black);
+            text-align: left;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 20px 14px 45px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+            background-color: var(--light-blue);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(77, 171, 245, 0.2);
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 15px;
+            bottom: 14px;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--saffron), var(--dark-saffron));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 123, 0, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 153, 51, 0.4);
+        }
+
+        .submit-btn.success {
+            background: linear-gradient(135deg, #28a745, #2ecc71);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            gap: 20px;
+            transition: var(--transition)
+        
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card .icon {
+            width: 60px;
+            height: 60px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--saffron);
+            font-size: 1.5rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark-blue);
+            text-align: left;
+        }
+
+        .info-card p {
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        .social-links {
+            background: var(--white);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .social-links h3 {
+            margin-bottom: 20px;
+            color: var(--dark-blue);
+        }
+
+        .social-links .icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links .icons a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--light-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--saffron);
+            transition: var(--transition);
+        }
+
+        .social-links .icons a:hover {
+            background: var(--saffron);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin-bottom: 15px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .faq-question h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--dark-blue);
+        }
+
+        .faq-question i {
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: var(--light-blue);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--light-blue);
+        }
+
+        .faq-answer p {
+            padding: 0 25px 20px;
+            margin: 0;
+        }
+
+        .faq-answer ul {
+            padding-left: 40px;
+            padding-bottom: 20px;
+        }
+
+        .faq-answer li {
+            margin-bottom: 8px;
+        }
+
+        /* Floating Buttons */
+        .chatbot-float, .whatsapp-float {
+            position: fixed;
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+
+        .chatbot-float {
+            bottom: 30px;
+            right: 30px;
+        }
+
+        .whatsapp-float {
+            bottom: 100px;
+            right: 30px;
+        }
+
+        .chatbot-float a, .whatsapp-float a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .chatbot-float a {
+            background: var(--purple);
+        }
+
+        .whatsapp-float a {
+            background: var(--green);
+        }
+
+        .chatbot-float a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(142, 68, 173, 0.6);
+        }
+
+        .whatsapp-float a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .chatbot-float i, .whatsapp-float i {
+            font-size: 1.5rem;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* AI Chatbot Popup - FIXED */
+        .chatbot-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            max-height: 90vh;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chatbot-popup.active {
+            opacity: 1;
+            pointer-events: all;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--saffron), var(--dark-saffron));
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .chatbot-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .chatbot-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .chatbot-info h3 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .chatbot-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .close-chatbot {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .close-chatbot:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatbot-body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: calc(100% - 140px);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background: #f9f9f9;
+            min-height: 200px;
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .message .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .message.bot .avatar {
+            background: var(--saffron);
+            color: white;
+        }
+
+        .message .content {
+            background: var(--light-blue);
+            padding: 15px;
+            border-radius: 0 15px 15px 15px;
+            max-width: 80%;
+        }
+
+        .message.bot .content {
+            background: #ffe8cc;
+            border-radius: 15px 0 15px 15px;
+        }
+
+        .message .content p {
+            margin: 0;
+        }
+
+        .message .content a {
+            color: var(--dark-blue);
+            text-decoration: underline;
+        }
+
+        .message .content ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .message .content li {
+            margin-bottom: 8px;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-family: 'Poppins', sans-serif;
+            outline: none;
+        }
+
+        .chat-input button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--saffron);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chat-input button:hover {
+            background: var(--dark-saffron);
+        }
+
+        .quick-questions {
+            padding: 20px;
+            background: #f0f0f0;
+            border-top: 1px solid #eee;
+        }
+
+        .quick-questions h4 {
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+        }
+
+        .quick-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .quick-buttons button {
+            background: var(--white);
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quick-buttons button:hover {
+            background: var(--saffron);
+            color: white;
+            border-color: var(--saffron);
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Success Message */
+        .success-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .success-message.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .success-content {
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            max-width: 500px;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .success-message.show .success-content {
+            transform: translateY(0);
+        }
+
+        .success-content i {
+            font-size: 4rem;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        .success-content h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+        }
+
+        .success-content p {
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 80px;
+            }
+            
+            .hero-text h2 {
+                font-size: 2.2rem;
+            }
+            
+            .chatbot-float a span, .whatsapp-float a span {
+                display: none;
+            }
+            
+            .chatbot-float a, .whatsapp-float a {
+                padding: 15px;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                justify-content: center;
+            }
+
+            .chatbot-float, .whatsapp-float {
+                bottom: 20px;
+            }
+
+            .chatbot-float {
+                right: 20px;
+            }
+
+            .whatsapp-float {
+                right: 100px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding-top: 60px;
+            }
+            
+            .hero-text h2 {
+                font-size: 1.8rem;
+            }
+            
+            .chatbot-popup {
+                width: 95%;
+                height: 85vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <div class="logo">
+                            <i class="fas fa-lotus"></i>
+                        
+                        </div>
+                        <h2>Connect with Lumbini</h2>
+                        <p>Have questions about your visit? Our team is here to help you plan your spiritual journey to the birthplace of Buddha.</p>
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <div class="number">24/7</div>
+                                <div class="label">Support</div>
+                            </div>
+                            <div class="stat">
+                                <div class="number">98%</div>
+                                <div class="label">Response Rate</div>
+                            </div>
+                            <div class="stat">
+                                <div class="number">30m</div>
+                                <div class="label">Avg. Response</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="floating-image">
+                            <img src="lumbini_pic/lumbini.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Get in Touch</h2>
+                    <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                </div>
+                
+                <div class="contact-container">
+                    <!-- Contact Form -->
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" placeholder="Enter your name" required>
+                                <i class="fas fa-user"></i>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" placeholder="Enter your email" required>
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" placeholder="Enter your phone number">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <select id="subject">
+                                    <option value="">Select a subject</option>
+                                    <option value="tour">Tour Information</option>
+                                    <option value="booking">Booking Inquiry</option>
+                                    <option value="group">Group Visit</option>
+                                    <option value="media">Media Request</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" placeholder="Type your message here..." required></textarea>
+                                <i class="fas fa-comment"></i>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <div class="info-card">
+                            <div class="icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="content">
+                                <h3>Our Location</h3>
+                                <p>Lumbini Development Trust, Lumbini, Rupandehi, Nepal</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="content">
+                                <h3>Phone Number</h3>
+                                <p>+977-9814449378</p>
+                                <p>+977-9817438915 (Emergency)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="content">
+                                <h3>Email Address</h3>
+                                <p>info@discoverlumbini.com</p>
+                                <p>support@discoverlumbini.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="content">
+                                <h3>Working Hours</h3>
+                                <p>Sunday - Friday: 9:00 AM - 6:00 PM</p>
+                                <p>Friday: 10:00 AM - 4:00 PM</p>
+                                <p>Saturday: Closed</p>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <h3>Follow Us</h3>
+                            <div class="icons">
+                                <a href="https://www.facebook.com/people/Rohit-Sahani/100052968826071/"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://x.com/RohitChai52755"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.instagram.com/rohit_sahanii0?igsh=MWtuMDNvdTgwbmMxdw=="><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                                <a href="https://wa.me/9779816473835"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Find answers to common questions about visiting Lumbini</p>
+                </div>
+                
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Do I need a special permit to visit Lumbini?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>No special permit is required for international visitors to enter Lumbini. However, all foreign visitors need a valid Nepal visa which can be obtained on arrival at the airport or border crossings.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What is the best time to visit Lumbini?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The ideal time to visit Lumbini is between October and March when the weather is pleasant with minimal rainfall. Temperatures range from 15°C to 25°C during these months.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Are guided tours available at Lumbini?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, certified guides are available at the entrance. We recommend booking in advance through our website for the best experience. Tours are available in English, Hindi, Nepali, Japanese, and several other languages.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Is photography allowed in the sacred garden?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Photography is permitted throughout Lumbini except in the inner sanctum of Maya Devi Temple where the exact birthplace marker is located. Please be respectful and avoid using flash photography inside temples.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How do I get to Lumbini from Kathmandu?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can reach Lumbini by:</p>
+                            <ul>
+                                <li>Flight: 45-minute flight to Bhairahawa Airport (25km from Lumbini)</li>
+                                <li>Bus: 8-10 hour tourist bus ride from Kathmandu</li>
+                                <li>Private vehicle: 6-7 hour drive via Prithvi Highway</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+   
+
+    <!-- Floating Buttons -->
+   
+    
+    <div class="whatsapp-float">
+        <a href="https://wa.me/+9779814449378" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+            <span>Chat on WhatsApp</span>
+        </a>
+    </div>
+    
+   
+
+    <script>
+        // Initialize Particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#4dabf5" },
+                shape: { type: "circle" },
+                opacity: { value: 0.1, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#4dabf5",
+                    opacity: 0.1,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                if (answer.style.maxHeight) {
+                    answer.style.maxHeight = null;
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                } else {
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                }
+            });
+        });
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitBtn = this.querySelector('.submit-btn');
+            
+            // Show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                submitBtn.classList.add('success');
+                
+                // Reset form after 2 seconds
+                setTimeout(() => {
+                    this.reset();
+                    submitBtn.innerHTML = '<span>Send Message</span> <i class="fas fa-paper-plane"></i>';
+                    submitBtn.classList.remove('success');
+                    submitBtn.disabled = false;
+                    
+                    // Show success message
+                    const successMsg = document.createElement('div');
+                    successMsg.className = 'success-message';
+                    successMsg.innerHTML = `
+                        <div class="success-content">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Thank You!</h3>
+                            <p>Your message has been sent successfully. We'll contact you shortly.</p>
+                        </div>
+                    `;
+                    document.body.appendChild(successMsg);
+                    
+                    setTimeout(() => {
+                        successMsg.classList.add('show');
+                    }, 10);
+                    
+                    setTimeout(() => {
+                        successMsg.classList.remove('show');
+                        setTimeout(() => {
+                            document.body.removeChild(successMsg);
+                        }, 300);
+                    }, 3000);
+                }, 2000);
+            }, 1500);
+        });
+
+        
+    </script>
+</body>
+</html>
+
